@@ -1,3 +1,5 @@
+#Ecodesc - Um aplicativo para auxílio no descarte do e-lixo
+
 Uma plataforma para o progresso e desenvolvimento sustentável, agora disponível de forma nativa nos aparelhos celulares.
 
 Desenvolvedores: Andrey Zacarias, Arthur Davi e Clara Muniz.
