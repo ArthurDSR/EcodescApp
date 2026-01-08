@@ -1,4 +1,4 @@
-#Ecodesc - Um aplicativo para auxílio no descarte do e-lixo
+# Ecodesc - Um aplicativo para auxílio no descarte do e-lixo
 
 Uma plataforma para o progresso e desenvolvimento sustentável, agora disponível de forma nativa nos aparelhos celulares.
 
