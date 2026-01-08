@@ -1,0 +1,70 @@
+<ion-toolbar color="transparent">
+</ion-toolbar>
+
+<ion-content class="ion-padding">
+
+  <form class="formulario" [formGroup]="formGroup">
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" class="botao" (click)="limpar()">
+          <ion-icon name="refresh-outline" slot="start"></ion-icon>
+          Limpar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <!-- Campo Nome -->
+    <ion-item class="form-item">
+      <ion-label position="stacked">Nome do Ecoponto</ion-label>
+      <ion-input type="text" placeholder="Digite o nome do ecoponto" class="form-input"
+        formControlName="nome"></ion-input>
+    </ion-item>
+
+
+    <!-- Campo de Pesquisa de Localização com Dropdown -->
+    <div class="search-container">
+      <ion-item class="form-item">
+        <ion-label position="stacked">Pesquisar Localização</ion-label>
+        <ion-input type="text" placeholder="Digite o endereço ou local" class="form-input" [(ngModel)]="searchQuery"
+          [ngModelOptions]="{standalone: true}" (ionInput)="onSearchInput($event)" (ionFocus)="onSearchFocus()"
+          (ionBlur)="onSearchBlur()">
+        </ion-input>
+      </ion-item>
+
+      <!-- Lista de Resultados da Pesquisa - Flutuante -->
+      <div class="search-dropdown" [class.visible]="searchResults.length > 0 && showDropdown"
+        *ngIf="searchResults.length > 0">
+        <div class="dropdown-content">
+          <div *ngFor="let result of searchResults; let i = index" class="dropdown-item" (click)="selecionarLocalizacao(result)" (mouseenter)="selectedIndex = i">
+            <div class="item-title">{{ result.displayName || result.display_name }}</div>
+            <div class="item-subtitle">{{ result.type || result.class }} - {{ result.addressType || result.class }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mapa - Sempre visível -->
+    <div class="map-container">
+      <ion-label class="map-label">Localização no Mapa</ion-label>
+      <div id="map" class="map"></div>
+    </div>
+
+    <!-- Campo Descrição (Endereço) -->
+    <ion-item class="form-item">
+      <ion-label position="stacked">Descrição/Endereço</ion-label>
+      <ion-textarea placeholder="Descrição ou endereço do ecoponto" class="form-input"
+        formControlName="descricao" rows="3">
+      </ion-textarea>
+    </ion-item>
+
+    <!-- Botões -->
+    <div class="form-buttons">
+      <ion-button expand="block" class="botao" (click)="salvarEcoponto()">
+        <ion-icon name="save-outline" slot="start"></ion-icon>
+        Salvar Ecoponto
+      </ion-button>
+    </div>
+  </form>
+
+</ion-content>

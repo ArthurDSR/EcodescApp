@@ -1,0 +1,90 @@
+<ion-toolbar color="transparent">
+</ion-toolbar>
+
+<ion-content class="ion-padding">
+  <h2 class="titulo-page">{{ produto.id ? 'Editar Produto' : 'Adicionar Produto' }}</h2>
+
+  <form [formGroup]="formGroup" class="formulario">
+    
+    <!-- Nome do Produto -->
+    <ion-item class="form-item">
+      <ion-label position="stacked" class="item-title">Nome do Produto *</ion-label>
+      <ion-input 
+        formControlName="nome" 
+        placeholder="Ex: Garrafa Térmica Ecológica"
+        class="form-input">
+      </ion-input>
+    </ion-item>
+
+    <!-- Descrição -->
+    <ion-item class="form-item">
+      <ion-label position="stacked" class="item-title">Descrição *</ion-label>
+      <ion-textarea 
+        formControlName="descricao" 
+        placeholder="Descreva seu produto..."
+        rows="4"
+        class="form-input">
+      </ion-textarea>
+    </ion-item>
+
+    <!-- Preço -->
+    <ion-item class="form-item">
+      <ion-label position="stacked" class="item-title">Preço (R$) *</ion-label>
+      <ion-input 
+        formControlName="preco" 
+        type="text"
+        inputmode="decimal"
+        placeholder="0.00"
+        class="form-input">
+      </ion-input>
+    </ion-item>
+
+    <!-- Categoria -->
+    <ion-item class="form-item">
+      <ion-label position="stacked" class="item-title">Categoria *</ion-label>
+      <ion-select 
+        formControlName="categoria" 
+        placeholder="Selecione uma categoria"
+        interface="action-sheet"
+        class="form-input">
+        <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.id">
+          {{ categoria.nome }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Upload de Imagem -->
+    <div class="imagens-section">
+      <ion-label class="item-title">Imagem do Produto</ion-label>
+      <p class="item-subtitle">Adicione uma foto do produto</p>
+      
+      <ion-button expand="block" fill="outline" class="botao" (click)="selecionarImagem()">
+        <ion-icon slot="start" name="image-outline"></ion-icon>
+        {{ preview ? 'Alterar Imagem' : 'Adicionar Imagem' }}
+      </ion-button>
+
+      <!-- Preview da Imagem -->
+      <div class="imagem-preview-container" *ngIf="preview">
+        <div class="imagem-preview">
+          <img [src]="preview" alt="Preview">
+          <ion-button 
+            fill="clear" 
+            class="remover-btn" 
+            (click)="removerImagem()">
+            <ion-icon slot="icon-only" name="close-circle"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botões -->
+    <div class="form-buttons">
+      <ion-button expand="block" class="botao" (click)="salvar()">
+        <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
+        {{ produto.id ? 'Atualizar' : 'Publicar' }}
+      </ion-button>
+
+    </div>
+
+  </form>
+</ion-content>

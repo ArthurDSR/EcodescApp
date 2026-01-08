@@ -1,0 +1,59 @@
+<ion-toolbar color="transparent">
+</ion-toolbar>
+
+<ion-content class="ion-padding">
+  <div class="descricao-container">
+    <p class="descricao">Bem-vindo à seção "Avalie Empresas" da plataforma EcoDesc! Aqui, você terá a oportunidade de
+      contribuir para a construção de um mundo mais sustentável, avaliando empresas do ramo de reciclagem com base em
+      sua experiência pessoal.<br><br>
+      Sabemos que a escolha de empresas comprometidas com a reciclagem é fundamental para promover práticas
+      ambientalmente responsáveis e, por isso, oferecemos a você a chance de dar voz à sua opinião.</p>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="carregando" style="text-align: center; padding: 20px;">
+    <ion-spinner></ion-spinner>
+    <p>Carregando empresas...</p>
+  </div>
+
+  <ion-searchbar *ngIf="!carregando" class="form-item" [debounce]="1000" (ionInput)="handleInput($event)"
+    placeholder="Pesquise uma empresa"></ion-searchbar>
+
+  <!-- Mensagem quando não há empresas -->
+  <div *ngIf="!carregando && empresas.length === 0" style="text-align: center; padding: 40px;">
+    <ion-icon name="business-outline" style="font-size: 64px; color: #ccc;"></ion-icon>
+    <p>Nenhuma empresa disponível para avaliação.</p>
+  </div>
+
+  <div class="empresa-list">
+    <div class="empresa-card" *ngFor="let empresa of empresas; let i = index" [hidden]="carregando">
+      <div class="card-image" (click)="verAvaliacoes(empresa.id)">
+        <img [src]="empresa.imagem">
+        <div class="image-overlay">
+          <ion-icon name="eye-outline" class="view-icon"></ion-icon>
+          <span>Ver avaliações</span>
+        </div>
+      </div>
+
+      <div class="card-content">
+        <h3 class="card-title">{{empresa.nome}}</h3>
+        <div class="rating-container">
+          <div class="stars-rating">
+            <ion-icon *ngFor="let star of stars" name="star" class="star" [class.filled]="empresa.rating >= star"
+              (click)="setRating(i, star)">
+            </ion-icon>
+          </div>
+        </div>
+
+        <div class="comment-container">
+          <ion-item lines="none" class="comment-item">
+            <ion-input type="text" [(ngModel)]="empresa.comentario" placeholder="Comentario" maxlength="120">
+            </ion-input>
+            <ion-button (click)="submitReview(i)"><ion-icon name="send" class="icone-submit"></ion-icon></ion-button>
+          </ion-item>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

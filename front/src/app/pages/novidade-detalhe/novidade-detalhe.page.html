@@ -1,0 +1,12 @@
+<ion-toolbar color="transparent">
+</ion-toolbar>
+
+<ion-content class="ion-padding">
+  <h2 class="titulo-page">{{novidade.titulo}}</h2>
+  <img *ngIf="novidade.imagemCaminho" [src]="getImagemUrl(novidade)" class="imagem-novidade" />
+  <p class="data-publicacao" *ngIf="novidade.dataPublicacao || novidade.dataAlteracao">
+    <ion-icon name="calendar-outline"></ion-icon>
+    {{ formatarData(novidade.dataAlteracao || novidade.dataPublicacao) }}
+  </p>
+  <p class="texto-novidade">{{novidade.texto}}</p>
+</ion-content>

@@ -1,0 +1,23 @@
+.descricao {
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.descricao-container {
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: justify;
+}
+
+.map-container {
+  margin-bottom: 100px;
+}
+
+#popup-btn {
+  --background: #003554;
+  --color: white;
+  --border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  cursor: pointer;
+}

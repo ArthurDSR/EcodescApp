@@ -1,0 +1,230 @@
+// Resumo Card
+.resumo-card {
+  background: linear-gradient(135deg, rgba(140, 190, 227, 0.3) 0%, rgba(140, 190, 227, 0.15) 100%);
+  border-radius: 20px;
+  padding: 25px;
+  margin: 20px 0;
+  box-shadow: 0 4px 15px rgba(0, 53, 84, 0.1);
+}
+
+.resumo-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.media-section {
+  text-align: center;
+}
+
+.media-numero {
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #003554;
+  font-family: 'Outfit', sans-serif;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.estrelas-media {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 10px;
+
+  .star-icon {
+    font-size: 1.75rem;
+    color: #FFD700;
+  }
+}
+
+.total-avaliacoes {
+  color: #003554;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: 'Outfit', sans-serif;
+  opacity: 0.8;
+}
+
+// Loading
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: #003554;
+
+  ion-spinner {
+    width: 50px;
+    height: 50px;
+    color: #8CBEE3;
+  }
+
+  p {
+    margin-top: 20px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+  }
+}
+
+// Sem avaliações
+.sem-avaliacoes {
+  text-align: center;
+  padding: 60px 20px;
+  color: #003554;
+
+  .icon-empty {
+    font-size: 5rem;
+    color: rgba(140, 190, 227, 0.5);
+    margin-bottom: 20px;
+  }
+
+  h3 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 1.375rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-family: 'Outfit', sans-serif;
+    opacity: 0.7;
+    font-size: 1rem;
+  }
+}
+
+// Lista de avaliações
+.avaliacoes-list {
+  margin-top: 20px;
+}
+
+// Card de avaliação
+.avaliacao-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 60
+  px;
+  box-shadow: 0 2px 10px rgba(0, 53, 84, 0.08);
+  border: 1px solid rgba(140, 190, 227, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 53, 84, 0.15);
+  }
+}
+
+.avaliacao-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.usuario-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8CBEE3 0%, #699AB7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ion-icon {
+    font-size: 1.75rem;
+    color: white;
+  }
+}
+
+.usuario-detalhes {
+  display: flex;
+  flex-direction: column;
+}
+
+.usuario-nome {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #003554;
+  margin: 0;
+}
+
+.data-avaliacao {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.8125rem;
+  color: #666;
+  margin: 2px 0 0 0;
+}
+
+.nota-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.estrelas {
+  display: flex;
+  gap: 3px;
+}
+
+.star-icon-small {
+  font-size: 1rem;
+  color: #ccc;
+
+  &.filled {
+    color: #FFD700;
+  }
+}
+
+.nota-numero {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #003554;
+}
+
+.avaliacao-body {
+  padding-top: 10px;
+  border-top: 1px solid rgba(140, 190, 227, 0.2);
+}
+
+.comentario {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: #003554;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+// Responsividade
+@media (max-width: 576px) {
+  .media-numero {
+    font-size: 3rem;
+  }
+
+  .estrelas-media .star-icon {
+    font-size: 1.5rem;
+  }
+
+  .avaliacao-card {
+    padding: 15px;
+  }
+
+  .usuario-nome {
+    font-size: 0.9375rem;
+  }
+
+  .comentario {
+    font-size: 0.875rem;
+  }
+}

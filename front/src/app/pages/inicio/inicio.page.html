@@ -1,0 +1,48 @@
+<ion-content>
+  <div class="div-inicio">
+    <div class="div-texto">
+      <h1 class="titulo-inicio">Reinvente,<br>
+        Recicle,<br>
+        Revolucione!</h1>
+      <p class="texto-inicio">Eletrônicos descartados, futuro recuperado: <br> recicle pelo amanhã sustentável!</p>
+    </div>
+  </div>
+
+  <div class="carousel-container">
+    <h2 class="carousel-title">Últimas Novidades</h2>
+    
+    <!-- Carrossel com novidades -->
+    <div class="carousel-wrapper" *ngIf="novidades.length > 0">
+      <div class="carousel-scroll">
+
+        <!-- Card dinâmico para cada novidade -->
+        <div class="media-card" 
+             *ngFor="let novidade of novidades; trackBy: trackByNovidadeId"
+             (click)="verDetalhes(novidade)">
+          
+          <div class="card-image">
+            <img [src]="getImagemUrl(novidade)" 
+                 [alt]="novidade.titulo">
+          </div>
+          
+          <div class="card-content">
+            <h3 class="card-title">{{ novidade.titulo }}</h3>
+            <p class="card-date" *ngIf="novidade.dataPublicacao || novidade.dataAlteracao">
+              <ion-icon name="calendar-outline"></ion-icon>
+              {{ formatarData(novidade.dataAlteracao || novidade.dataPublicacao) }}
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mensagem quando não há novidades -->
+    <div class="empty-state" *ngIf="novidades.length === 0">
+      <ion-icon name="newspaper-outline" class="empty-icon"></ion-icon>
+      <h3>Nenhuma novidade encontrada</h3>
+      <p>Ainda não há novidades publicadas.</p>
+    </div>
+
+  </div>
+</ion-content>

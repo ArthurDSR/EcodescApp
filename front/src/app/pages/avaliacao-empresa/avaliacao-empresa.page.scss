@@ -1,0 +1,141 @@
+.card-content {
+  text-align: center;
+}
+
+.card-image {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 15px 15px 0 0;
+
+  img {
+    width: 80%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 53, 84, 0.8);
+    display: block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    gap: 8px;
+
+    .view-icon {
+      font-size: 2.5rem;
+      color: white;
+    }
+
+    span {
+      color: white;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+  }
+
+  &:hover {
+    img {
+      transform: scale(1.05);
+    }
+
+    .image-overlay {
+      opacity: 1;
+    }
+  }
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333;
+  text-transform: capitalize;
+}
+
+.rating-container {
+  margin-top: 1rem;
+}
+
+.rating-label {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.stars-rating {
+  justify-content: center;
+  display: flex;
+  gap: 0.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.star {
+  font-size: 1.5rem;
+  color: #8CBEE3;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.star.filled {
+  color: #ffd700;
+}
+
+.star:hover {
+  color: #ffed4e;
+}
+
+
+.comment-container {
+  display: block;
+  margin-top: 1.5rem;
+  text-align: left;
+}
+
+.comment-item {
+  color: #003554;
+  margin-bottom: 20px;
+  --background: rgba(140, 190, 227, 0.15);
+  --border-radius: 15px;
+  --border-style: none;
+  --inner-border-width: 0;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.char-counter {
+  font-size: 0.8rem;
+  color: #999;
+  text-align: right;
+  margin: 0;
+  padding-right: 12px;
+}
+
+ion-input,
+ion-textarea {
+  font-size: 0.9rem;
+}
+
+.icone-submit {
+  font-size: 1rem;
+  color: #E0F9FF;
+}
+
+ion-button {
+  --border-radius: 30px;
+  --background:  #003554;
+  justify-content: center;
+}
+
+.empresa-list {
+  margin-bottom: 60px;
+}

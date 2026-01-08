@@ -1,0 +1,34 @@
+<ion-toolbar color="transparent">
+</ion-toolbar>
+
+<ion-content class="ion-padding">
+
+  <div class="marketplace-grid">
+    <div class="produto-card" *ngFor="let produto of produtos; let i = index" (click)="verDetalhes(produto)">
+      <!-- Imagem rotativa -->
+      <div class="card-image-container">
+        <img [src]="getImagemUrl(produto)" [alt]="produto.titulo" class="produto-imagem">
+      </div>
+
+      <!-- Informações do produto -->
+      <div class="card-content">
+        <h3 class="produto-nome">{{ produto.titulo }}</h3>
+        <p class="produto-preco">{{ formatarPreco(produto.preco) }}</p>
+        <p class="produto-descricao">{{ produto.descricao }}</p>
+      </div>
+    </div>
+  </div>
+
+  <ion-fab class="chat" horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button class="botao-flutuante" [routerLink]="['/add-produto']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+  <!-- Mensagem quando não há produtos -->
+  <div class="empty-state" *ngIf="produtos.length === 0">
+    <ion-icon name="cart-outline" class="empty-icon"></ion-icon>
+    <p>Nenhum produto disponível no momento</p>
+  </div>
+</ion-content>

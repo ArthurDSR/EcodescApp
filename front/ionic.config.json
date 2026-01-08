@@ -1,0 +1,7 @@
+{
+  "name": "Ecodesc",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

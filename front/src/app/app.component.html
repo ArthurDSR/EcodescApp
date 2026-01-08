@@ -1,0 +1,57 @@
+<ion-app>
+  <ion-menu side="end" contentId="main-content">
+    <ion-content class="ion-padding">
+      <ion-list class="menu-list">
+
+        <ion-item *ngFor="let item of visibleMenuItems" button (click)="navigateAndCloseMenu(item.route)">
+          <ion-label>{{ item.label }}</ion-label>
+        </ion-item>
+
+        <ion-item *ngIf="isLoggedIn$ | async" button (click)="logout()">
+          <ion-label>Sair</ion-label>
+          <ion-icon name="log-out-outline" slot="end"></ion-icon>
+        </ion-item>
+
+        <ion-item *ngIf="!(isLoggedIn$ | async)" button (click)="navigateAndCloseMenu('/login')">
+          <ion-label>Entrar</ion-label>
+          <ion-icon name="log-in-outline" slot="end"></ion-icon>
+        </ion-item>
+
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+
+
+  
+  <div class="ion-page" id="main-content">
+    <ion-toolbar color="transparent" class="global-toolbar"> 
+      <ion-buttons slot="start" *ngIf="!showLogo">
+        <ion-button (click)="goBack()" class="back-button-toolbar">
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+        <span class="titulo-page">{{ pageTitle }}</span>
+      </ion-buttons>
+      <img src="assets/icon/logo.png" alt="Logo" slot="start" class="logo-toolbar" *ngIf="showLogo" routerLink="/inicio">
+      <ion-buttons slot="end">
+        <ion-menu-button class="menu-button-style"></ion-menu-button>
+      </ion-buttons>
+    </ion-toolbar>
+
+
+    <ion-fab class="chat" *ngIf="showFab" horizontal="end" vertical="bottom" slot="fixed">
+      <ion-fab-button class="botao-flutuante">
+        <img src="assets/icon/smart.png" alt="chatbot" class="chatbot-icon" [routerLink]="['/chatbot']">
+      </ion-fab-button>
+    </ion-fab>
+
+    
+  <ion-tab-bar class="tab" slot="bottom" *ngIf="isLoggedIn$ | async" >
+    <ion-tab-button  *ngFor="let item of visibleTabItems" [tab]="item.tab" (click)="navigateToTab(item.route)">
+      <ion-icon [name]="item.icon"></ion-icon>
+      {{ item.label }}
+    </ion-tab-button>
+  </ion-tab-bar>
+
+    <ion-router-outlet></ion-router-outlet>
+  </div>
+</ion-app>

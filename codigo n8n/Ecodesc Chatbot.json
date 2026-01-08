@@ -1,0 +1,278 @@
+{
+  "name": "Ecodesc Chatbot",
+  "nodes": [
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "d47bc794-c0d0-4137-baf7-36f909e47262",
+              "leftValue": "={{ $('Entrada').item.json.body.message }}",
+              "rightValue": "buscar_ecoponto",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        176,
+        -144
+      ],
+      "id": "c15ff475-dd15-4b98-9160-9d916586de52",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "0e46d486-895b-4591-a378-7a844a863ff7",
+              "name": "temp_answer",
+              "value": "Em construção",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        432,
+        -208
+      ],
+      "id": "6f0e7f92-7ce5-4bf9-b689-509d84bd1ada",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        704,
+        -144
+      ],
+      "id": "2804e315-5022-4433-ba8a-7ac77c80018e",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [
+        1296,
+        -144
+      ],
+      "id": "acf9ce01-40f0-45ce-879e-3d97533ff7ba",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Inicia o loop para processar cada item que chega ao nó, como no exemplo do n8n.\nfor (const item of $input.all()) {\n  \n  // 1. PEGA O TEXTO BRUTO\n  // Pega o texto de dentro do item atual do loop.\n  let textoBruto = item.json.texto_para_converter;;\n\n  if (!textoBruto) {\n    item.json.error = \"Nenhum texto de entrada encontrado neste item.\";\n    continue; // Pula para o próximo item do loop\n  }\n\n  // 2. LIMPA O TEXTO\n  // Usa a expressão regular para extrair a parte que parece ser o JSON.\n  const match = textoBruto.match(/\\{[\\s\\S]*\\}|\\[[\\s\\S]*\\]/);\n\n  if (!match) {\n    item.json.error = \"Nenhuma estrutura JSON ( {..} ou [..] ) foi encontrada no texto.\";\n    item.json.textoRecebido = textoBruto;\n    continue; // Pula para o próximo item\n  }\n  \n  const textoJsonLimpo = match[0];\n\n  // 3. TENTA CONVERTER (PARSE)\n  try {\n    // Se a conversão der certo, SUBSTITUI o .json do item pelo novo objeto JSON.\n    item.json = JSON.parse(textoJsonLimpo);\n  } catch (error) {\n    // Se der erro, adiciona uma propriedade de erro ao item para sabermos o que aconteceu.\n    item.json.error = \"O texto extraído não é um JSON válido.\";\n    item.json.textoExtraido = textoJsonLimpo;\n  }\n}\n\n// 4. RETORNA TODOS OS ITENS\n// Retorna a coleção de itens, agora modificados.\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1088,
+        -144
+      ],
+      "id": "558ff1f8-2fbf-432b-a989-bcfba0af7fd3",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "603370a7-628c-4b78-8c0c-030da565e329",
+              "name": "texto_para_converter",
+              "value": "={{ $json.message }}",
+              "type": "string"
+            },
+            {
+              "id": "0ff1bf52-4024-4e3d-a972-b66e3a3e08e7",
+              "name": "",
+              "value": "",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        896,
+        -144
+      ],
+      "id": "c039bbbd-1318-4764-906b-2d0d8e64e66f",
+      "name": "resposta"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "1f1c7a6a-0efa-41ff-b5cc-ae656cf6a7ec",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -432,
+        -144
+      ],
+      "id": "59e6dfc8-7c77-4074-80a3-5853b33390c8",
+      "name": "Entrada",
+      "webhookId": "1f1c7a6a-0efa-41ff-b5cc-ae656cf6a7ec"
+    },
+    {
+      "parameters": {
+        "model": "sonar-pro",
+        "messages": {
+          "message": [
+            {
+              "content": "Você é um assistente virtual especialista do aplicativo EcoDesc, uma plataforma completa para a gestão de lixo eletrônico (e-waste). Sua missão é ser o guia principal do usuário dentro do nosso ecossistema, respondendo dúvidas e direcionando-o ativamente para as funcionalidades corretas do app. Não há informações gerais sobre o e-lixo diretamente no app, portanto, é sua função explicar dúvidas do tipo, ou seja, não há uma central de conhecimento no app.\n\nContexto do Aplicativo (Sua Base de Conhecimento)\n\nVocê tem pleno conhecimento de todas as seções do nosso app:\n\nMapa de Ecopontos: A função principal, onde usuários encontram locais de descarte para itens quebrados ou sem uso.\n\nMarketplace Verde: Uma área para usuários venderem ou doarem eletrônicos que ainda funcionam, promovendo a economia circular.\n\nRanking de Empresas: Uma funcionalidade onde os usuários avaliam as empresas de coleta e reciclagem parceiras.\n\nSua Lógica de Atuação (Regras Principais)\n\nSua tarefa principal é identificar a intenção do usuário e, a partir dela, executar uma de duas ações: responder diretamente ou preparar uma busca para o sistema.\n\nRegra de Ouro: Seja sempre proativo. Se um usuário perguntar como descartar algo, além de ajudar, incentive-o a considerar o Marketplace caso o item ainda tenha valor.\n\nFormato de Resposta\n\nVocê deve seguir o formato original para garantir a integração com o sistema.\n\nPara Respostas Diretas: Forneça a informação de forma clara.\nExemplo de Pergunta: \"Quais os danos do chumbo?\"\nSua Resposta: (Explicação sobre os perigos do chumbo no e-waste, sugerindo a leitura de um artigo na Central de Conhecimento).\n\nPara Buscas no Sistema: Responda APENAS com o JSON {\"action\": \"buscar_info\", \"query\": \"termo da busca para a API\"}.\n\nLógica de Intenção e Direcionamento (O Mais Importante)\n\nA. Intenção: DESCARTAR ITEM QUEBRADO/SEM USO\n\nGatilhos: \"onde jogo fora\", \"descartar\", \"reciclar\", \"lixo\", \"quebrado\", \"não funciona\".\n\nSua Ação:\n\nIdentifique o item e a localização na pergunta do usuário.\n\nMonte uma query otimizada para a busca no mapa.\n\nResponda com o JSON.\n\nExemplo:\nUsuário: \"Onde posso descartar meu monitor que queimou em Salvador?\"\nSua Resposta: {\"action\": \"buscar_info\", \"query\": \"pontos de coleta de monitores em Salvador\"}\n\nB. Intenção: VENDER ou DOAR ITEM FUNCIONAL\n\nGatilhos: \"vender\", \"passar pra frente\", \"doar\", \"meu celular antigo\", \"ainda funciona\".\n\nSua Ação:\n\nEsta é uma oportunidade de engajamento! Não gere um JSON de busca.\n\nResponda diretamente, explicando que a melhor opção para itens em bom estado é o Marketplace Verde do nosso app, pois promove a reutilização e pode até render um dinheiro extra.\n\nExemplo:\nUsuário: \"Tenho um notebook antigo mas que ainda liga, o que eu faço?\"\nSua Resposta: \"Que ótimo que ele ainda funciona! A melhor opção é anunciá-lo em nosso Marketplace Verde. Lá você pode vendê-lo ou doá-lo, estendendo a vida útil do aparelho e ajudando o meio ambiente. O descarte deve ser a última opção para itens funcionais.\"\n\nC. Intenção: BUSCAR INFORMAÇÃO GERAL\n\nGatilhos: \"o que é\", \"por que\", \"quais os riscos\", \"como funciona\".\n\nSua Ação:\n\nResponda a pergunta de forma objetiva e clara.\n\nAo final, sempre que possível, adicione um convite para o usuário explorar a Central de Conhecimento para mais detalhes.\n\nExemplo:\nUsuário: \"Por que não posso jogar pilhas no lixo comum?\"\nSua Resposta: \"As pilhas contêm metais pesados tóxicos como cádmio, mercúrio e chumbo. No lixo comum, elas podem vazar e contaminar gravemente o solo e os lençóis freáticos. Por isso, precisam de coleta especializada. Você pode aprender mais sobre isso em nossa Central de Conhecimento no app!\"\n\nD. Intenção: PERGUNTA SOBRE EMPRESAS ou PARCEIROS\n\nGatilhos: \"a empresa X é boa?\", \"opiniões sobre a ReciclaTudo\", \"avaliar a coleta\".\n\nSua Ação:\n\nResponda diretamente, orientando o usuário a consultar (ou contribuir com) o Ranking de Empresas no aplicativo para ver a opinião de outros usuários.\n\nExemplo:\nUsuário: \"O serviço de coleta da empresa E-Waste Solutions é confiável?\"\nSua Resposta: \"Para verificar a reputação e a opinião de outros usuários sobre a E-Waste Solutions e outras empresas parceiras, recomendo que você consulte nosso Ranking de Empresas diretamente no aplicativo. Sua avaliação lá também é muito importante!\"\n\nE. Intenção: FORA DE ESCOPO\n\nGatilhos: Qualquer assunto não relacionado a e-waste, sustentabilidade ou ao aplicativo.\n\nSua Ação: Responda educadamente que você só pode falar sobre esse tema específico.\n\nExemplo:\nUsuário: \"Qual a capital da Austrália?\"\nSua Resposta: \"Desculpe, só posso fornecer informações sobre lixo eletrônico e as funcionalidades do nosso aplicativo.\"\n\nDEVE SER OBRIGATORIAMENTE EM JSON",
+              "role": "system"
+            },
+            {
+              "content": "={{ $json.body.message }}"
+            }
+          ]
+        },
+        "simplify": true,
+        "options": {},
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.perplexity",
+      "typeVersion": 1,
+      "position": [
+        -96,
+        -144
+      ],
+      "id": "a49f603f-f0c8-4770-92b2-c59a5262c0cc",
+      "name": "Message a model",
+      "credentials": {
+        "perplexityApi": {
+          "id": "NmISLoMofJiH5qPc",
+          "name": "Perplexity account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "resposta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "resposta": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Entrada": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "5dbedfdb-a7ba-46b7-a98a-3852eadffb69",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "74916678d7b870e8561074c0a08799f6ea74040a426841b0a288a2f546e0bdde"
+  },
+  "id": "VeWZcI-tlR8IzIGfSu-5D",
+  "tags": []
+}

@@ -1,0 +1,56 @@
+<ion-toolbar color="transparent">
+</ion-toolbar>
+
+<ion-content class="ion-padding">
+
+  <!-- Formulário Único -->
+  <form class="perfil-form" [formGroup]="formGroup">
+
+      <ion-list-header>
+        <ion-label>Dados do Perfil</ion-label>
+      </ion-list-header>
+
+      <ion-item class="form-item">
+        <ion-label position="stacked">Nome</ion-label>
+        <ion-input type="text" placeholder="Digite seu nome" class="form-input" formControlName="nome"></ion-input>
+      </ion-item>
+
+      <ion-item class="form-item">
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input type="email" class="form-input" formControlName="email" readonly></ion-input>
+      </ion-item>
+
+
+    <!-- Botão para atualizar perfil -->
+    <div class="form-buttons">
+      <ion-button expand="block" class="botao" (click)="updateProfile()" [disabled]="formGroup.get('nome')?.invalid">
+        <ion-icon name="save-outline" slot="start"></ion-icon>
+        Atualizar Nome
+      </ion-button>
+    </div>
+
+
+
+      <ion-list-header>
+        <ion-label>Alterar Senha</ion-label>
+      </ion-list-header>
+
+      <ion-item class="form-item">
+        <ion-label position="stacked">Senha Antiga</ion-label>
+        <ion-input type="password" placeholder="Digite a senha antiga" class="form-input" formControlName="senha"></ion-input>
+      </ion-item>
+
+      <ion-item class="form-item">
+        <ion-label position="stacked">Nova Senha</ion-label>
+        <ion-input type="password" placeholder="Digite a nova senha" class="form-input" formControlName="senhaNova"></ion-input>
+      </ion-item>
+
+
+    <!-- Botão para alterar senha -->
+    <ion-button expand="block" class="botao" (click)="changePassword()" [disabled]="formGroup.get('senha')?.invalid || formGroup.get('senhaNova')?.invalid">
+      <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+      Alterar Senha
+    </ion-button>
+
+  </form>
+</ion-content>

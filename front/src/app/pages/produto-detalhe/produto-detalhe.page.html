@@ -1,0 +1,32 @@
+<ion-toolbar color="transparent">
+</ion-toolbar>
+
+<ion-content class="ion-padding" *ngIf="produto">
+  <!-- Carrossel de Imagens -->
+  <div class="image-carousel">
+    <div class="carousel-container">
+      <img [src]="getImagemUrl(produto)" [alt]="produto.titulo" class="produto-imagem-principal">
+    </div>
+  </div>
+
+    <!-- Nome do Produto -->
+    <h1 class="produto-titulo">{{ produto.titulo }}</h1>
+
+    <!-- Descrição -->
+    <div class="produto-secao">
+      <p class="produto-descricao">{{ produto.descricao }}</p>
+    </div>
+
+    <!-- Preço -->
+    <div class="produto-preco-container">
+      <span class="produto-preco">{{ formatarPreco(produto.preco) }}</span>
+    </div>
+
+    <!-- Botão Enviar Mensagem -->
+    <ion-button expand="block" class="botao-mensagem" (click)="enviarMensagem()">
+      <ion-icon slot="start" name="chatbubble-outline"></ion-icon>
+      Enviar mensagem para o anunciante
+    </ion-button>
+
+
+</ion-content>

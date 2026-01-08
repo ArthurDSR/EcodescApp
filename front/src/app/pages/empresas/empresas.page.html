@@ -1,0 +1,49 @@
+<ion-toolbar color="transparent">
+</ion-toolbar>
+
+<ion-content class="ion-padding">
+  <h2 class="titulo-page">Empresas Pendentes</h2>
+  <p class="subtitulo">Aprove empresas cadastradas para conceder permissões especiais</p>
+
+  <!-- Barra de pesquisa -->
+  <ion-searchbar
+    [(ngModel)]="searchTerm"
+    (ionInput)="pesquisar()"
+    placeholder="Buscar por nome ou login"
+    animated="true">
+  </ion-searchbar>
+
+  <!-- Loading -->
+  <div *ngIf="carregando" class="loading-container">
+    <ion-spinner></ion-spinner>
+    <p>Carregando empresas...</p>
+  </div>
+
+  <!-- Lista de empresas -->
+  <ion-list *ngIf="!carregando && empresasFiltradas.length > 0">
+    <ion-item *ngFor="let empresa of empresasFiltradas" class="empresa-item">
+      <ion-icon name="business" slot="start" color="primary" class="empresa-icon"></ion-icon>
+      
+      <ion-label>
+        <h2>{{ empresa.owner.nome }}</h2>
+        <ion-badge color="warning">Pendente</ion-badge>
+      </ion-label>
+
+      <ion-button 
+        slot="end" 
+        fill="solid" 
+        color="success"
+        (click)="aprovarEmpresa(empresa)">
+        <ion-icon slot="start" name="checkmark-circle"></ion-icon>
+        Aprovar
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Mensagem quando não há empresas -->
+  <div class="empty-state" *ngIf="!carregando && empresasFiltradas.length === 0">
+    <ion-icon name="business-outline" class="empty-icon"></ion-icon>
+    <h3>{{ searchTerm ? 'Nenhuma empresa encontrada' : 'Nenhuma empresa pendente' }}</h3>
+    <p>{{ searchTerm ? 'Tente outro termo de busca' : 'Todas as empresas já foram aprovadas' }}</p>
+  </div>
+</ion-content>

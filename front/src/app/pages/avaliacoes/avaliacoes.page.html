@@ -1,0 +1,72 @@
+<ion-toolbar color="transparent">
+</ion-toolbar>
+
+<ion-content class="ion-padding">
+
+  <!-- Card de Resumo -->
+  <div class="resumo-card" *ngIf="!carregando">
+    <div class="resumo-content">
+      <div class="media-section">
+        <div class="media-numero">{{ mediaAvaliacoes | number:'1.1-1' }}</div>
+        <div class="estrelas-media">
+          <ion-icon 
+            *ngFor="let star of getStars(Math.round(mediaAvaliacoes))" 
+            [name]="star ? 'star' : 'star-outline'" 
+            class="star-icon">
+          </ion-icon>
+        </div>
+        <div class="total-avaliacoes">{{ totalAvaliacoes }} avaliações</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div class="loading-container" *ngIf="carregando">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Carregando avaliações...</p>
+  </div>
+
+  <!-- Lista de Avaliações -->
+  <div class="avaliacoes-list" *ngIf="!carregando">
+    <!-- Mensagem se não houver avaliações -->
+    <div class="sem-avaliacoes" *ngIf="avaliacoes.length === 0">
+      <ion-icon name="chatbox-outline" class="icon-empty"></ion-icon>
+      <h3>Nenhuma avaliação ainda</h3>
+      <p>Seja o primeiro a avaliar esta empresa!</p>
+    </div>
+
+    <!-- Cards de Avaliação -->
+    <div class="avaliacao-card" *ngFor="let avaliacao of avaliacoes">
+      <div class="avaliacao-header">
+        <div class="usuario-info">
+          <div class="avatar">
+            <ion-icon name="person"></ion-icon>
+          </div>
+          <div class="usuario-detalhes">
+            <h3 class="usuario-nome">{{ avaliacao.nomeUsuario || 'Usuário #' + avaliacao.idUsuarioComum }}</h3>
+            <p class="data-avaliacao">{{ formatarData(avaliacao.dataAvaliacao) }}</p>
+          </div>
+        </div>
+        <div class="nota-section">
+          <div class="estrelas">
+            <ion-icon 
+              *ngFor="let star of getStars(avaliacao.nota)" 
+              [name]="star ? 'star' : 'star-outline'" 
+              [class.filled]="star"
+              class="star-icon-small">
+            </ion-icon>
+          </div>
+          <span class="nota-numero">{{ avaliacao.nota }}.0</span>
+        </div>
+        <ion-button *ngIf="isAdmin" color="danger" fill="clear" size="small" (click)="excluirAvaliacao(avaliacao.id)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+      </div>
+
+      <div class="avaliacao-body">
+        <p class="comentario">{{ avaliacao.comentario }}</p>
+      </div>
+    </div>
+  </div>
+
+</ion-content>

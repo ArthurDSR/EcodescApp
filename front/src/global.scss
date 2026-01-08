@@ -1,0 +1,636 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * Ionic Dark Mode
+ * -----------------------------------------------------
+ * For more info, please see:
+ * https://ionicframework.com/docs/theming/dark-mode
+ */
+
+/* @import "@ionic/angular/css/palettes/dark.always.css"; */
+/* @import "@ionic/angular/css/palettes/dark.class.css"; */
+@import "@ionic/angular/css/palettes/dark.system.css";
+
+/* Fonte Outfit Global */
+* {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', sans-serif !important;
+}
+
+body {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', sans-serif !important;
+}
+
+ion-app {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'Helvetica Neue', sans-serif !important;
+}
+
+/* Estilos globais do cabeçalho */
+// Background da página
+ion-app {
+  --background: #E0F9FF;
+}
+
+#main-content {
+  --background: #E0F9FF;
+  background: #E0F9FF;
+}
+
+ion-content {
+  --background: #E0F9FF;
+  --overflow: auto;
+  overflow-y: auto;
+}
+
+.titulo-page {
+  color: #003554;
+  font-family: 'Outfit', sans-serif;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+
+// Estilo do mapa - sem sombra para visual flat
+.map-container {
+  margin: 20px 10px; // Mesmo margin lateral dos form-items
+  border-radius: 15px;
+  overflow: hidden;
+  // box-shadow removido para visual flat
+}
+
+.map-label {
+  display: block;
+  color: #003554;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  margin-bottom: 10px;
+  padding: 0 5px;
+}
+
+.map {
+  height: 300px;
+  width: calc(100% - 20px); // Mesma largura efetiva dos inputs (descontando padding)
+  margin: 0 10px; // Centralizar com o mesmo padding dos form-items
+  border-radius: 15px;
+  user-select: none;
+}
+
+
+// Para garantir que toda a área tenha o background
+div.ion-page {
+  --background: #E0F9FF;
+  background: #E0F9FF;
+  height: 100vh;
+  overflow: hidden;
+}
+
+// Menu global
+ion-menu::part(backdrop) {
+  background-color: rgba(0, 0, 116, 0.5);
+}
+
+ion-menu::part(container) {
+  border-radius: 20px 0px 0px 20px;
+  box-shadow: 4px 0px 16px rgba(12, 5, 138, 0.451);
+  background-color: #699AB7;
+}
+
+// Fundo do conteúdo do menu
+ion-menu ion-content {
+  --background: #699AB7;
+  background-color: #699AB7;
+}
+
+ion-toolbar {
+  margin-bottom: 16px;
+  /* Define a margem entre o toolbar e o corpo */
+}
+
+
+ion-menu {
+  --background: #699AB7;
+}
+
+// Estilo da lista do menu
+.menu-list {
+  background: transparent;
+}
+
+.menu-list ion-item {
+  --background: transparent;
+  --border-style: none;
+  --inner-border-width: 0;
+  color: white;
+}
+
+.menu-list ion-label {
+  color: white;
+  font-family: 'Outfit', sans-serif;
+  font-weight: normal;
+  font-size: 1.25rem !important;
+}
+
+.menu-list ion-icon {
+  color: white;
+}
+
+ion-toolbar {
+  margin-top: 30px;
+}
+
+
+// Toolbar global
+.global-toolbar {
+  z-index: 1000;
+  --background: transparent !important;
+
+  // Botão de voltar na toolbar
+  .back-button-toolbar {
+    --background: transparent;
+    --background-hover: rgba(140, 190, 227, 0.1);
+    color: #8CBEE3;
+    font-size: 1.5rem;
+    margin-right: 8px;
+  }
+
+  // Título da página na toolbar
+  .titulo-page {
+    color: #003554;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  ion-buttons[slot="start"] {
+    --background: transparent;
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+    gap: 8px;
+  }
+}
+
+
+.toolbar-page {
+  --background: transparent !important;
+  box-shadow: none;
+}
+
+
+// Estilo da logo no toolbar global
+.logo-toolbar {
+  width: 80px;
+  display: flex;
+  align-items: center;
+}
+
+// Estilo do botão de menu global
+.menu-button-style {
+  font-size: 5rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+// Cor do botão de menu global
+ion-menu-button {
+  --color: #8CBEE3;
+  color: #8CBEE3 !important;
+}
+
+ion-menu-button ion-icon {
+  color: #8CBEE3 !important;
+}
+
+
+ion-toolbar ion-buttons ion-menu-button ion-icon {
+  color: #8CBEE3 !important;
+}
+
+// Estilos gerais de texto
+h2,
+h3,
+p,
+ion-label {
+  color: #003554;
+}
+
+h1,
+.login-label {
+  color: white;
+  font-weight: 100;
+}
+
+// Garantir scroll em todas as páginas
+ion-content.ion-padding {
+  margin-bottom: 20px;
+  --padding-top: 0;
+  --padding-bottom: 20px;
+  --overflow: auto;
+}
+
+// Fix para scroll global
+html,
+body {
+  overflow-x: hidden;
+}
+
+ion-app {
+  position: relative;
+  height: 100vh;
+}
+
+// Classe para remover o fundo global em páginas específicas como a de login
+.login-page-background {
+  ion-content {
+    --background: transparent;
+  }
+}
+
+.login-container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('assets/icon/fundoLogin.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.login-box {
+  width: 80%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 0.5px solid #8CBEE3;
+  border-radius: 10px;
+
+  ion-item {
+    --background: transparent;
+    --border-color: #8CBEE3;
+    --color: white;
+    margin-bottom: 10px;
+  }
+
+  ion-label {
+    color: white !important;
+  }
+
+  ion-input {
+    --color: white;
+
+    border-bottom: 1px solid white;
+  }
+}
+
+.botao-flutuante {
+  width: 70px;
+  height: 70px;
+  --background: #8CBEE3;
+  --color: white;
+}
+
+.chatbot-icon {
+  margin-top: 0.4rem;
+  width: 50px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.login-form ion-item {
+  width: 100%;
+}
+
+.login-button {
+  width: 60%; // Define a largura do botão
+  --border-radius: 50px;
+  --background: #8CBEE3; // Cor de fundo do botão
+  --color: white; // Cor do texto do botão
+  --border-color: rgba(140, 190, 227, 0.5);
+  text-transform: none;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+
+
+// Formulário
+.formulario {
+  margin-top: 20px;
+}
+
+.form-item {
+  color: #003554;
+  margin-bottom: 20px;
+  --background: rgba(140, 190, 227, 0.15);
+  --border-radius: 15px;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.form-input {
+  --color: #003554;
+  font-family: 'Outfit', sans-serif;
+}
+
+.item-title {
+  color: #003554;
+  font-weight: 500;
+  font-size: 0.875rem;
+  margin-bottom: 4px;
+  font-family: 'Outfit', sans-serif;
+}
+
+.item-subtitle {
+  color: #666;
+  font-size: 0.75rem;
+  font-family: 'Outfit', sans-serif;
+}
+
+// Botões
+.form-buttons {
+  margin-top: 30px;
+  margin-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.botao {
+  --background: rgba(140, 190, 227, 0.27);
+  --border-radius: 50px;
+  --color: #003554;
+  text-transform: none;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 500;
+}
+
+
+// Container do botão adicionar
+.add-button-container {
+  justify-content: center;
+  margin: 20px 0;
+}
+
+// Estilo do botão adicionar
+.add-button {
+  --background: rgba(140, 190, 227, 0.27);
+  --border-radius: 50px;
+  --color: #003554;
+  text-transform: none;
+}
+
+// Estilo da lista de ecopontos
+.item-list {
+  background: transparent;
+}
+
+.item-item {
+  background: rgba(140, 190, 227, 0.27);
+  border-radius: 15px;
+  margin: 10px 0;
+  padding: 10px 10px;
+  --background: transparent;
+  --border-radius: 15px;
+  --border-style: none;
+  --inner-border-width: 0;
+}
+
+// Estilo para ion-item-sliding
+.item-sliding {
+  margin: 10px 0;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.item-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.item-name {
+  color: #003554;
+  font-weight: bold;
+  font-size: 1rem;
+  flex: 1;
+}
+
+.item-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-button {
+  --background: rgba(255, 193, 7, 0.3);
+  --color: #856404;
+  --border-radius: 20px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  height: 32px;
+  font-size: 0.75rem;
+  text-transform: none;
+}
+
+.delete-button {
+  --background: rgba(220, 53, 69, 0.3);
+  --color: #721c24;
+  --border-radius: 20px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  height: 32px;
+  font-size: 0.75rem;
+  text-transform: none;
+}
+
+// Estilo para ion-item-option
+.delete-option {
+  text-transform: none;
+  font-family: 'Outfit', sans-serif;
+}
+
+.descricao-container {
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: justify;
+}
+
+
+
+
+// Media Cards
+.media-card {
+  flex: 0 0 calc(33.333%); // Aproximadamente 3 cards na tela
+  min-width: 140px; // Largura mínima
+  max-width: 180px; // Largura máxima
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.empresa-card {
+  margin: 20px;
+  justify-self: center;
+  min-width: 140px; // Largura mínima
+  max-width: 200px; // Largura máxima
+  border: 2px solid #003554;
+  border-radius: 35px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.card-image {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 75%;
+    height: 80%;
+    border-radius: 30px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  // Placeholder se não tiver imagem
+  &:empty::after {
+    content: '📱';
+    font-size: 1.875rem;
+    color: #ccc;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+.card-content {
+  padding: 5px;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #003554;
+  margin: 0 0 4px 0;
+  font-family: 'Outfit', sans-serif;
+  line-height: 1.2;
+
+  // Limitar a 2 linhas
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-subtitle {
+  font-size: 0.75rem;
+  color: #666;
+  margin: 0 0 8px 0;
+  font-family: 'Outfit', sans-serif;
+  line-height: 1.3;
+
+  // Limitar a 2 linhas
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-date {
+  font-size: 0.6875rem;
+  color: #999;
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  ion-icon {
+    font-size: 0.75rem;
+  }
+}
+
+.form-item {
+  color: #003554;
+  margin-bottom: 20px;
+  --background: rgba(140, 190, 227, 0.15);
+  --border-radius: 15px;
+  --border-style: none;
+  --inner-border-width: 0;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.chat {
+  margin-bottom: 60px;
+}
+
+.tab {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  --background: #8CBEE3;
+  background: #8CBEE3;
+  border: none;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  --color: #003554;
+}
+
+.tab-font {
+  font-size: 0.9375rem;
+}

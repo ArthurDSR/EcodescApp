@@ -1,0 +1,35 @@
+.cadastro-link {
+  text-align: left;
+  font-size: 0.8em;
+  color: white;
+  margin-top: 10px;
+}
+
+.cadastro-link-text {
+  color: white;
+  text-decoration: underline;
+}
+
+.cadastro-link-text:hover {
+  color: #ccc;
+}
+
+.cdf-input {
+  font-size: 0.75rem;
+  padding: 8px 0;
+  border: none;
+  background: transparent;
+  color: white;
+  width: 100%;
+}
+
+.sub-container {
+  display: flex;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 20px;
+  width: 100%;
+  align-items: center;
+  flex-direction: row;
+  justify-content:end;
+}

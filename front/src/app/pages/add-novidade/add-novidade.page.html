@@ -1,0 +1,50 @@
+<ion-toolbar color="transparent">
+</ion-toolbar>
+
+<ion-content class="ion-padding">
+
+  <form class="novidade-form" [formGroup]="formGroup">
+
+
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" class="botao" (click)="limpar()">
+          <ion-icon name="refresh-outline" slot="start"></ion-icon>
+          Limpar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-item class="form-item">
+      <ion-label position="stacked">Título</ion-label>
+      <ion-input type="text" placeholder="Digite o título da novidade" class="form-input"
+        formControlName="titulo"></ion-input>
+    </ion-item>
+
+
+    <ion-item class="form-item">
+      <ion-label position="stacked">Corpo da Novidade</ion-label>
+      <ion-textarea placeholder="Digite o corpo da novidade" class="form-input" formControlName="texto" rows="18">
+      </ion-textarea>
+    </ion-item>
+
+    <div class="profile-image-container" (click)="selecionarImagem()">
+      <img *ngIf="preview; else placeholder" [src]="preview" class="profile-image" />
+      <ng-template #placeholder>
+        <div class="placeholder">
+          <ion-icon name="camera-outline"></ion-icon>
+          <span>Selecionar foto</span>
+        </div>
+      </ng-template>
+    </div>
+    
+    <!-- Botões -->
+    <div class="form-buttons">
+      <ion-button expand="block" class="botao" (click)="salvarNovidade()">
+        <ion-icon name="save-outline" slot="start"></ion-icon>
+        Salvar Novidade
+      </ion-button>
+    </div>
+  </form>
+
+</ion-content>

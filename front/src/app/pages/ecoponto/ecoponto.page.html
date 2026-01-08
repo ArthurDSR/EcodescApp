@@ -1,0 +1,25 @@
+<ion-toolbar color="transparent">
+</ion-toolbar>
+
+<ion-content class="ion-padding">
+
+  <div class="add-button-container">
+    <ion-button expand="block" class="add-button" (click)="adicionar()">
+      Adicionar
+    </ion-button>
+  </div>
+
+  <ion-list class="item-list">
+    <ion-item-sliding *ngFor="let ecoponto of ecopontos" class="item-sliding">
+      <ion-item class="item-item">
+        <div class="item-content">
+          <span class="item-name">{{ecoponto.nome}}</span>
+          <div class="item-buttons">
+            <ion-button size="small" class="edit-button" (click)="editar(ecoponto)">Editar</ion-button>
+            <ion-button size="small" class="delete-button" (click)="excluir(ecoponto)">Excluir</ion-button>
+          </div>
+        </div>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

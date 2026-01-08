@@ -1,0 +1,40 @@
+<ion-toolbar color="transparent">
+</ion-toolbar>
+
+<ion-content>
+  <div class="ion-padding">
+    <div class="descricao-container">
+      <p class="descricao">Esta seção é o seu canal direto para se conectar conosco, a equipe EcoDesc. Seja para
+        esclarecer dúvidas, compartilhar suas ideias, relatar problemas técnicos ou simplesmente para nos contar como
+        podemos melhorar a sua experiência com a nossa plataforma.<br><br>
+        Estamos ansiosos para ouvir você! Acreditamos que as melhores soluções surgem por meio da colaboração e do
+        diálogo, por isso valorizamos a sua opinião!</p>
+    </div>
+  </div>
+
+
+  <div class="form-container">
+    <form class="contato-form" [formGroup]="formGroup">
+      <ion-item class="contato-item">
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input type="email" placeholder="Digite seu email" class="form-input" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item class="contato-item">
+        <ion-label position="stacked">Assunto</ion-label>
+        <ion-input type="text" placeholder="Digite o assunto" class="form-input" formControlName="assunto"></ion-input>
+      </ion-item>
+      <ion-item class="contato-item">
+        <ion-label position="stacked">Mensagem</ion-label>
+        <ion-textarea placeholder="Digite sua mensagem" class="form-input" formControlName="mensagem" rows="6">
+        </ion-textarea>
+      </ion-item>
+
+      <div class="form-buttons">
+        <ion-button expand="block" class="contato-button" (click)="enviar()">
+          <ion-icon name="save-outline" slot="start"></ion-icon>
+          Enviar Mensagem
+        </ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

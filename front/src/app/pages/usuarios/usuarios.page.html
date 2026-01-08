@@ -1,0 +1,67 @@
+<ion-content class="ion-padding">
+
+  <!-- Barra de pesquisa -->
+  <div class="search-container">
+    <ion-searchbar 
+      placeholder="Pesquisar por nome ou login" 
+      [(ngModel)]="termoPesquisa"
+      (ionInput)="pesquisar($event)"
+      animated="true">
+    </ion-searchbar>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="carregando" class="loading-container">
+    <ion-spinner name="crescent" color="primary"></ion-spinner>
+  </div>
+
+  <!-- Lista de usuários -->
+  <div *ngIf="!carregando">
+    
+    <!-- Contador de resultados -->
+    <div class="resultados-info">
+      <p>{{ usuariosFiltrados.length }} usuário(s) encontrado(s)</p>
+    </div>
+
+    <!-- Card de cada usuário -->
+    <ion-card *ngFor="let usuario of usuariosFiltrados" class="usuario-card">
+      <ion-card-content>
+        
+        <div class="usuario-header">
+          <div class="usuario-info">
+            <h2 class="usuario-nome">{{ usuario.nome }}</h2>
+            <p class="usuario-login">{{ usuario.login }}</p>
+          </div>
+          
+          <div class="usuario-badges">
+            <ion-badge [color]="usuario.role === 'ADMIN' ? 'success' : 'primary'" class="role-badge">
+              {{ getRoleLabel(usuario.role) }}
+            </ion-badge>
+            <ion-badge color="medium" class="tipo-badge">
+              {{ getTipoUsuario(usuario) }}
+            </ion-badge>
+          </div>
+        </div>
+
+        <!-- Botão de promover (apenas para usuários comuns não-admin) -->
+        <ion-button 
+          expand="block" 
+          color="warning"
+          (click)="promoverParaAdmin(usuario)"
+          class="promover-btn">
+          <ion-icon name="arrow-up-circle" slot="start"></ion-icon>
+          Promover a Admin
+        </ion-button>
+
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Mensagem quando não há resultados -->
+    <div *ngIf="usuariosFiltrados.length === 0" class="sem-resultados">
+      <ion-icon name="search-outline"></ion-icon>
+      <p>Nenhum usuário encontrado</p>
+    </div>
+
+  </div>
+
+</ion-content>

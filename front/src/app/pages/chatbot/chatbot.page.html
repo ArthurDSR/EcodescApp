@@ -1,0 +1,31 @@
+<ion-toolbar color="transparent">
+</ion-toolbar>
+
+<div class="apagar-conversa-bar">
+  <ion-button class="botao" expand="block" (click)="apagarConversa()">
+    <ion-icon name="trash" slot="start"></ion-icon>
+    Apagar conversa
+  </ion-button>
+</div>
+
+<ion-content class="ion-padding" [fullscreen]="true">
+  <div class="chat-mensagens">
+    <div *ngFor="let msg of mensagens" [ngClass]="msg.usuario === 1 ? 'msg-usuario' : 'msg-chatbot'">
+      <div class="msg-bubble" [class.digitando]="msg.digitando">
+        <span *ngIf="!msg.digitando">{{ msg.texto }}</span>
+        <div *ngIf="msg.digitando" class="typing-indicator">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<div class="chat-input-bar" *ngIf="podeEnviar()">
+  <ion-input [(ngModel)]="mensagemInput" placeholder="Digite sua mensagem..." class="chat-input"></ion-input>
+  <ion-button (click)="enviarMensagem()" [disabled]="!mensagemInput.trim()">
+    <ion-icon name="send"></ion-icon>
+  </ion-button>
+</div>

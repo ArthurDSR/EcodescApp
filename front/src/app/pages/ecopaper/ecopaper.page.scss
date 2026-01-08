@@ -1,0 +1,27 @@
+.descricao {
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+
+.descricao-container {
+  margin-bottom: 60px;
+  margin-left: 20px;
+  margin-right: 20px;
+  text-align: justify;
+}
+
+.form-item {
+  padding: 0;
+  justify-self: center;
+}
+
+.search-btn-col {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.botao {
+  --background:  #003554;
+  color: white;
+}
